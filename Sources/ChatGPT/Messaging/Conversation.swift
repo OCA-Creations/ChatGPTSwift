@@ -39,7 +39,7 @@ public struct Conversation: Encodable {
     
     ///Makes a request to the API for the conversation.
     ///- Warning:This method will automatically add the AI-generated text to the ``Conversation``.
-    `public mutating func submit(completionHandler: @escaping(APIResponse?) -> Void) async{
+    public mutating func submit(completionHandler: @escaping(APIResponse?) -> Void) async{
         //Create the request and configure its values
         var request = URLRequest(url: ChatGPT.endpoint)
         request.httpMethod = "POST"
@@ -74,6 +74,6 @@ public struct Conversation: Encodable {
         }
 
         task.resume()
-    }`
+    }
     
 }
