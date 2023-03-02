@@ -1,3 +1,3 @@
 # ChatGPT.swift
 
-A description of this package.
+An interface with the OpenAI ChatGPT API via the `Swift` language.
