@@ -14,14 +14,15 @@ public struct APIResponse: Codable {
     ///The type this response concerns. Will likely be `"messages"`
     public var object: String
     ///When this response was created (timeIntervalSince1970
-    public var wasCreated: Date
-    
-    ///The choices made by the model.
-    public var choices: [Choice]
+    public var created: Date
     
     ///The model usage.
     public var usage: Usage
+    ///The choices made by the model.
+    public var choices: [Choice]
+    
+    
     
     ///The model name used for the completion
-    public var modelName: String
+    public var model: String
 }
