@@ -8,12 +8,19 @@
 import Foundation
 
 ///A single message in a conversation with a chatbot.
-public struct Message: Codable {
+public struct Message: Codable, Identifiable, Equatable{
+    ///Assert equality between the two.
+    public static func == (lhs: Message, rhs: Message) -> Bool {
+        lhs.id == rhs.id
+    }
+    
     ///The Message's header content.
    public var header: Header
     
     ///The actual content of the message.
     public var content: String
+    
+    public var id: UUID
     
     ///How to encode a message.
     public enum CodingKeys: String, CodingKey {
@@ -39,11 +46,13 @@ public struct Message: Codable {
         } else {
             self.header = Header(role: .system)
         }
+        self.id = UUID()
     }
     
     public init(header: Header, content: String){
         self.header = header
         self.content = content
+        self.id = UUID()
     }
     
     

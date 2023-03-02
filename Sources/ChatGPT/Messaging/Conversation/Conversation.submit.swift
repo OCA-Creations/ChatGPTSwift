@@ -70,4 +70,48 @@ public extension Conversation {
             }
         }
     }
+    
+    ///Clear the conversation of all non-system messages
+    ///- Note: A system message is identified by a ``Role.system`` role in its ``Header``.
+    ///- Warning: This will clear all conversation content except for system messages! Use very carefully, as this will remove even the first user message as well.
+    ///- Warning: If you want to keep the first user-generated message, pass in `keepFirstUser: Bool` as `true`.
+    ///- Parameter keepSystem: Whether or not to keep system messages. Defaults to `true`.
+    ///- Parameter keepFirstUser: Whether or not to keep the first user-sent message.
+    mutating func clear(keepSystem: Bool = true, keepFirstUser: Bool = false) {
+        
+            if keepFirstUser {
+                var miniChange = self.messages
+                miniChange.removeAll(where: { mes in
+                    if !keepSystem{
+                        return mes.header.role == .assistant || mes.header.role == .system
+                    } else {
+                        return mes.header.role == .assistant
+                    }
+                })
+                let first = miniChange.firstIndex { mes in
+                    mes.header.role == .user
+                } ?? 0
+                var toRemove: [Message] = []
+                for (index, i) in miniChange.enumerated() {
+                    if !(index == first) {
+                        toRemove.append(i)
+                    }
+                }
+                self.messages = miniChange.filter { mes in
+                    toRemove.contains { new in
+                        new == mes
+                    } != true
+                }
+            } else {
+                if keepSystem{
+                    self.messages.removeAll(where:  { x in
+                        x.header.role != .system
+                    })
+                } else {
+                    self.messages.removeAll()
+                }
+            }
+        
+        
+    }
 }
