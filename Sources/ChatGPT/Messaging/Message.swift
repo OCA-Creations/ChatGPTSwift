@@ -29,8 +29,11 @@ public struct Message: Codable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        // print("Created messaging container")
         self.content = try container.decode(String.self, forKey: .content)
+        // print("Created content container")
         let miniRole = try container.decode(String.self, forKey: .role)
+        // print("Created role container")
         if let role = Role(rawValue: miniRole) {
             self.header = Header(role: role)
         } else {
