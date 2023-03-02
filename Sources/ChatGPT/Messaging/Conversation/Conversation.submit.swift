@@ -10,10 +10,11 @@ import Foundation
 public extension Conversation {
     ///Makes a request to the API for the conversation.
     ///- Warning:This method will automatically add the AI-generated text to the ``Conversation``.
-    public mutating func submit(completionHandler: @escaping(APIResponse?) -> Void) async{
+    mutating func submit(completionHandler: @escaping(APIResponse?) -> Void) async{
         //Create the request and configure its values
         // print("\n\n\n Hello World!!!")
         var request = URLRequest(url: ChatGPT.endpoint)
+        self.checkConversationLength()
         request.httpMethod = "POST"
         request.addValue("Bearer \(model.apiKey)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -50,5 +51,23 @@ public extension Conversation {
             task.resume()
         }
         
+    }
+    ///Check the maximum number of tokens allowed by the API, and remove topmost system ones if it is more
+    ///- Parameter maxLengthInCharacters: The maximum number of characters allowed
+    mutating func checkConversationLength(maxLengthInCharacters: Int = 4096) {
+        //First check the overall length of all of the messages
+        var totalCount = 0
+        for i in self.messages {
+            totalCount += i.content.count
+        }
+        //Remove non system messages that are over the limit
+        while totalCount > maxLengthInCharacters {
+            if let item = self.messages.firstIndex (where:  { message in
+                message.header.role != .system
+            }) {
+                totalCount -= messages[item].content.count
+                messages.remove(at: item)
+            }
+        }
     }
 }

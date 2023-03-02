@@ -8,6 +8,6 @@ final class ChatGPTTests: XCTestCase {
         
         let decoder = JSONDecoder()
         let newResp = try decoder.decode(APIResponse.self, from: resp.data(using: .utf8)!)
-        // print(newResp)
+        print(newResp.choices[0].messages[0].content)
     }
 }
