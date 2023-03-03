@@ -7,6 +7,7 @@
 
 import Foundation
 
+@available(iOS 15, macOS 12, *)
 public extension Conversation {
     ///Makes a request to the API for the conversation.
     ///- Warning:This method will automatically add the AI-generated text to the ``Conversation``.
