@@ -11,7 +11,7 @@ import Foundation
 ///- Note: As of March 2023, this only contains the ``Role``, but the API will be updated in the future.
 public struct Header: Codable {
     ///The ``Role`` of the message sender.
-    var role: Role
+    public var role: Role
     
     ///Create a `Header` for a message.
     ///- Parameter role: The ``Role`` of the sender of the message.

@@ -9,13 +9,13 @@ import Foundation
 
 open class ChatGPT: Model, Codable {
     
-    public static var maxTokens: UInt = 4096
+    public var maxTokens: UInt = 4096
     
-    public static var trainingData: Date = Date(timeIntervalSince1970: 1630454400)
+    public var trainingData: Date = Date(timeIntervalSince1970: 1630454400)
     
-    public static var endpoint: URL = URL(string: "https://api.openai.com/v1/chat/completions")!
+    public var endpoint: URL = URL(string: "https://api.openai.com/v1/chat/completions")!
     
-    public static var apiName: String = "gpt-3.5-turbo"
+    public var apiName: String = "gpt-3.5-turbo"
     
   
     
