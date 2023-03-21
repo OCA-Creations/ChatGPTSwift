@@ -14,7 +14,7 @@ public extension Conversation {
     mutating func submit(completionHandler: @escaping(APIResponse?) -> Void) async{
         //Create the request and configure its values
         // print("\n\n\n Hello World!!!")
-        var request = URLRequest(url: model.endpoint)
+        var request = URLRequest(url: ChatGPT.endpoint)
         self.checkConversationLength()
         request.httpMethod = "POST"
         request.addValue("Bearer \(model.apiKey)", forHTTPHeaderField: "Authorization")
