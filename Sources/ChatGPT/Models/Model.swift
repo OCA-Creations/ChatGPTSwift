@@ -25,7 +25,7 @@ public protocol Model: Codable{
     static var apiName: String { get }
     
     ///Initialize the model with an API key.
-    init(_ apiKey: String)
+    init(_ apiKey: String, temperature: Double)
     
     ///The model's API key
     var apiKey: String { get set }

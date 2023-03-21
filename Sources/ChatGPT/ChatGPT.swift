@@ -18,11 +18,15 @@ open class ChatGPT: Model, Codable {
     
   
     
-    public required init(_ apiKey: String) {
+    public required init(_ apiKey: String, temperature: Double = 0.7) {
         self.apiKey = apiKey
+        self.temperature = temperature
     }
     
     public var apiKey: String
+    
+    ///The model's variability.
+    public var temperature: Double
     
     
     

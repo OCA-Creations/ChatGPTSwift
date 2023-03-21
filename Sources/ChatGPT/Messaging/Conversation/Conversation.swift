@@ -23,13 +23,14 @@ public struct Conversation: Encodable {
     }
     ///How to encode the conversation
     public enum CodingKeys: String, CodingKey {
-        case model, messages
+        case model, messages, temperature
     }
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(ChatGPT.apiName, forKey: .model)
         try container.encode(self.messages, forKey: .messages)
+        try container.encode(model.temperature, forKey: .temperature)
     }
     
     ///Add a message to the conversation.
