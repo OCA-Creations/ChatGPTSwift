@@ -15,7 +15,7 @@ public protocol Model: Codable{
     
     ///When the model's training data cuts off in the real world.
     ///- Note: As of March 3rd, 2023, the latest model cuts off in September 2021.
-    static var trainingData: Date { get }
+    static var trainingCutoff: Date { get }
     
     ///The actual endpoint that should be used to access the model.
     static var endpoint: URL { get }
