@@ -28,7 +28,7 @@ public struct Conversation: Encodable {
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(ChatGPT.apiName, forKey: .model)
+        try container.encode(model.apiName, forKey: .model)
         try container.encode(self.messages, forKey: .messages)
         try container.encode(model.temperature, forKey: .temperature)
     }

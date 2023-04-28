@@ -22,10 +22,10 @@ public protocol Model: Codable{
     
     ///The model name, as it should be referred to in the API.
     ///- Note: For ChatGPT models, this is actually `gpt-3.5-turbo`, not ChatGPT.
-    static var apiName: String { get }
+    var apiName: String { get }
     
     ///Initialize the model with an API key.
-    init(_ apiKey: String, temperature: Double)
+    init(_ apiKey: String, temperature: Double, apiName: String)
     
     ///The model's API key
     var apiKey: String { get set }
