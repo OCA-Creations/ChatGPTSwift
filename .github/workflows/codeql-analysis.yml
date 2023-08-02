@@ -26,7 +26,7 @@ jobs:
         echo "Condition to exit with a non-zero status if the verification fails"
 
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@v1
+      uses: github/codeql-action/init@v3
       with:
         languages: "swift"
 
