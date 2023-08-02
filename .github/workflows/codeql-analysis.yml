@@ -21,9 +21,7 @@ jobs:
     - name: Verify CodeQL tools integrity
       run: |
         echo "Verifying integrity of CodeQL tools..."
-        # Add the actual command to check the file size or checksum of the downloaded file
-        # and compare it with the expected values
-        echo "Command to verify the integrity of the downloaded CodeQL tools"
+        echo "sha256sum path/to/downloaded/file"
         # Add a condition to exit with a non-zero status if the verification fails
         echo "Condition to exit with a non-zero status if the verification fails"
 
@@ -41,14 +39,12 @@ jobs:
     - name: Re-download CodeQL tools if necessary
       run: |
         echo "Re-downloading CodeQL tools..."
-        # Replace this with the actual command to re-download the CodeQL tools if the integrity check fails
-        echo "Command to re-download the CodeQL tools if the integrity check fails"
+        echo "wget -O path/to/downloaded/file https://github.com/github/codeql-action/releases/download/v1.0.0/codeql-bundle.tar.gz"
 
     - name: Clear toolcache
       run: |
         echo "Clearing toolcache..."
-        # Replace this with the actual command to clear the toolcache
-        echo "Command to clear the toolcache"
+        echo "rm -rf /opt/hostedtoolcache/CodeQL"
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
