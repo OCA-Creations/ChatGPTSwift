@@ -7,19 +7,20 @@
 
 import Foundation
 
-///A single message in a conversation with a chatbot.
+/// Represents a single message in a conversation with a chatbot.
 public struct Message: Codable, Identifiable, Equatable{
-    ///Assert equality between the two.
+    /// Asserts equality between two `Message` instances.
     public static func == (lhs: Message, rhs: Message) -> Bool {
         lhs.id == rhs.id
     }
     
-    ///The Message's header content.
+    /// The header content of the message.
    public var header: Header
     
-    ///The actual content of the message.
+    /// The actual content of the message.
     public var content: String
     
+    /// The unique identifier of the message.
     public var id: UUID
     
     ///How to encode a message.
@@ -28,6 +29,9 @@ public struct Message: Codable, Identifiable, Equatable{
         case content
     }
     
+    /// Encodes this instance into the given encoder.
+    /// - Parameter encoder: The encoder to write data to.
+    /// - Throws: An error if any values are invalid.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.header.role, forKey: .role)
@@ -49,6 +53,10 @@ public struct Message: Codable, Identifiable, Equatable{
         self.id = UUID()
     }
     
+    /// Initializes a new instance of the `Message` struct.
+    /// - Parameters:
+    ///   - header: The header content of the message.
+    ///   - content: The actual content of the message.
     public init(header: Header, content: String){
         self.header = header
         self.content = content
