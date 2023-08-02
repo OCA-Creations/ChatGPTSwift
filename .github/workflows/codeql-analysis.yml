@@ -26,17 +26,20 @@ jobs:
     - name: Verify CodeQL tools
       run: |
         echo "Verifying integrity of CodeQL tools..."
-        # Add commands to verify the integrity of the downloaded CodeQL tools
+        # Replace this with the actual command to verify the integrity of the downloaded CodeQL tools
+        echo "Command to verify the integrity of the downloaded CodeQL tools"
 
     - name: Re-download CodeQL tools if necessary
       run: |
         echo "Re-downloading CodeQL tools..."
-        # Add commands to re-download the CodeQL tools if the integrity check fails
+        # Replace this with the actual command to re-download the CodeQL tools if the integrity check fails
+        echo "Command to re-download the CodeQL tools if the integrity check fails"
 
     - name: Clear toolcache
       run: |
         echo "Clearing toolcache..."
-        # Add commands to clear the toolcache
+        # Replace this with the actual command to clear the toolcache
+        echo "Command to clear the toolcache"
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
