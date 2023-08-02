@@ -28,7 +28,7 @@ jobs:
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
       with:
-        languages: "javascript,python"
+        languages: "swift"
 
     - name: Verify CodeQL tools
       run: |
