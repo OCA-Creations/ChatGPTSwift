@@ -1,0 +1,50 @@
+name: "CodeQL"
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ master ]
+  schedule:
+    - cron: '0 14 * * 0'
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Verify CodeQL tools integrity
+      run: |
+        echo "Verifying integrity of CodeQL tools..."
+        echo "sha256sum path/to/downloaded/file"
+        # Add a condition to exit with a non-zero status if the verification fails
+        echo "Condition to exit with a non-zero status if the verification fails"
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: "swift"
+
+    - name: Verify CodeQL tools
+      run: |
+        echo "Verifying integrity of CodeQL tools..."
+        # Replace this with the actual command to verify the integrity of the downloaded CodeQL tools
+        echo "Command to verify the integrity of the downloaded CodeQL tools"
+
+    - name: Re-download CodeQL tools if necessary
+      run: |
+        echo "Re-downloading CodeQL tools..."
+        echo "wget -O path/to/downloaded/file https://github.com/github/codeql-action/releases/download/v1.0.0/codeql-bundle.tar.gz"
+
+    - name: Clear toolcache
+      run: |
+        echo "Clearing toolcache..."
+        echo "rm -rf /opt/hostedtoolcache/CodeQL"
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v1

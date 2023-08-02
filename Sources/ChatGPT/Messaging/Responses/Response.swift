@@ -7,22 +7,20 @@
 
 import Foundation
 
-///A response from the OpenAI completions API.
+/// Represents a response from the OpenAI completions API.
 public struct APIResponse: Decodable {
-    ///The identifier used to identify this response
+    /// The identifier used to identify this response.
     public var id: String
-    ///The type this response concerns. Will likely be `"messages"`
+    /// The type this response concerns. Will likely be `"messages"`.
     public var object: String
-    ///When this response was created (timeIntervalSince1970
+    /// The date and time when this response was created, represented as the number of seconds since 1970-01-01 00:00:00 UTC.
     public var created: Date
-    
-    ///The model usage.
+    /// The usage details of the model for this response.
     public var usage: Usage
-    ///The choices made by the model.
+    /// The choices made by the model in this response.
     public var choices: [Choice]
-    
-    
-    
+    /// The name of the model used for the completion.
+    public var model: String
     ///The model name used for the completion
     public var model: String
     
@@ -30,6 +28,9 @@ public struct APIResponse: Decodable {
            case id, object, created, model, usage, choices
        }
     
+    /// Initializes a new instance of the `APIResponse` struct.
+    /// - Parameter decoder: The decoder to use to initialize the instance.
+    /// - Throws: An error if decoding fails.
     public init(from decoder: Decoder) throws {
         // print("Starting to decode")
            let container = try decoder.container(keyedBy: CodingKeys.self)

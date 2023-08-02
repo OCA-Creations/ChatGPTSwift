@@ -9,8 +9,10 @@ import Foundation
 
 @available(iOS 15, macOS 12, *)
 public extension Conversation {
-    ///Makes a request to the API for the conversation.
-    ///- Warning:This method will automatically add the AI-generated text to the ``Conversation``.
+    /// Makes a request to the API for the conversation and automatically adds the AI-generated text to the ``Conversation``.
+    /// - Parameter completionHandler: A closure that is called when the request is complete. The closure takes an optional `APIResponse` as its argument.
+    /// - Returns: Void
+    /// - Warning: This method will automatically add the AI-generated text to the ``Conversation``.
     mutating func submit(completionHandler: @escaping(APIResponse?) -> Void) async{
         //Create the request and configure its values
         // print("\n\n\n Hello World!!!")
@@ -53,8 +55,9 @@ public extension Conversation {
         }
         
     }
-    ///Check the maximum number of tokens allowed by the API, and remove topmost system ones if it is more
-    ///- Parameter maxLengthInCharacters: The maximum number of characters allowed
+    /// Checks the maximum number of tokens allowed by the API, and removes topmost system ones if it is more.
+    /// - Parameter maxLengthInCharacters: The maximum number of characters allowed. Defaults to 4096.
+    /// - Returns: Void
     mutating func checkConversationLength(maxLengthInCharacters: Int = 4096) {
         //First check the overall length of all of the messages
         var totalCount = 0
@@ -72,12 +75,13 @@ public extension Conversation {
         }
     }
     
-    ///Clear the conversation of all non-system messages
-    ///- Note: A system message is identified by a ``Role.system`` role in its ``Header``.
-    ///- Warning: This will clear all conversation content except for system messages! Use very carefully, as this will remove even the first user message as well.
-    ///- Warning: If you want to keep the first user-generated message, pass in `keepFirstUser: Bool` as `true`.
-    ///- Parameter keepSystem: Whether or not to keep system messages. Defaults to `true`.
-    ///- Parameter keepFirstUser: Whether or not to keep the first user-sent message.
+    /// Clears the conversation of all non-system messages.
+    /// - Parameter keepSystem: Whether or not to keep system messages. Defaults to `true`.
+    /// - Parameter keepFirstUser: Whether or not to keep the first user-sent message. Defaults to `false`.
+    /// - Returns: Void
+    /// - Note: A system message is identified by a ``Role.system`` role in its ``Header``.
+    /// - Warning: This will clear all conversation content except for system messages! Use very carefully, as this will remove even the first user message as well.
+    /// - Warning: If you want to keep the first user-generated message, pass in `keepFirstUser: Bool` as `true`.
     mutating func clear(keepSystem: Bool = true, keepFirstUser: Bool = false) {
         
             if keepFirstUser {
