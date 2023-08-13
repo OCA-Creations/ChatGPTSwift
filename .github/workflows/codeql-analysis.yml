@@ -26,7 +26,7 @@ jobs:
         echo "Condition to exit with a non-zero status if the verification fails"
 
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@v3
+      uses: github/codeql-action/init@v2.14
       with:
         languages: "swift"
 
@@ -47,4 +47,4 @@ jobs:
         echo "rm -rf /opt/hostedtoolcache/CodeQL"
 
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v1
+      uses: github/codeql-action/analyze@v2.14
